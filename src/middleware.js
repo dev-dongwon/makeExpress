@@ -1,9 +1,10 @@
 const middleware = () => {
     const middlewares = [];
-    const request, response;
+    let request = null;
+    let response = null;
 
     const add = (func) => {
-        middleware.push(func)
+        middlewares.push(func)
     }
 
     const run = (req, res) => {
@@ -32,6 +33,7 @@ const middleware = () => {
     return {
       middlewares,
       add,
+      run
     }
   }
   
