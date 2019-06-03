@@ -28,6 +28,12 @@ const application = () => {
         use(path, func);
     }
 
+    const post = (path, func) => {
+        if (!path || !func) throw Error('path and fn is required')
+        func.method = 'POST';
+        use(path, func);
+    }
+
     const listen = (host, port, func) => {
         server.listen(host, port, func);
         debug('server is now listening');
@@ -37,6 +43,8 @@ const application = () => {
         server,
         listen,
         use,
+        get,
+        post,
     }
 }
 
