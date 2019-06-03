@@ -13,3 +13,10 @@
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+#join-link {
+    margin-top: 5%;
+    text-align: right;
+    color: red;
+    text-decoration: underline;
+}
