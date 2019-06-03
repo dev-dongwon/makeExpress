@@ -14,7 +14,16 @@ const application = () => {
         middleware.run(req, res);
     });
 
-    const use = (func) => {
+    const use = (path, func) => {
+
+        if (typeof path === 'string' && typeof func === 'function') {
+            func.path = path;
+        } else if (typeof path == 'function') {
+            func = path;
+        } else {
+            throw Error('Usage: use(path, fn) or use(fn)');
+        }
+
         middleware.add(func);
     }
 
