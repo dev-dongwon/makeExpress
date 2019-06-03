@@ -24,13 +24,13 @@ const application = () => {
 
     const get = (path, func) => {
         if (!path || !func) throw Error('path and fn is required')
-        func.method = 'GET';
+        func.method = 'get';
         use(path, func);
     }
 
     const post = (path, func) => {
         if (!path || !func) throw Error('path and fn is required')
-        func.method = 'POST';
+        func.method = 'post';
         use(path, func);
     }
 
