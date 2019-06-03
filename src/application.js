@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const serveStatic = require('../middlewares/serve-static');
 const Middleware = require('./middleware');
+const Response = require('./resonse');
 
 const debug = require('../utils/debug')('application');
 
@@ -11,7 +12,7 @@ const application = () => {
     const middleware = Middleware();
 
     const server = http.createServer((req, res) => {
-        middleware.run(req, res);
+        middleware.run(req, Response(res));
     });
 
     const use = (path, func) => {
