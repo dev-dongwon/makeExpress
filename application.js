@@ -1,4 +1,5 @@
 const http = require('http');
+const debug = require('./utils/debug')('application');
 
 const application = () => {
     const server = http.createServer((req, res) => {
@@ -8,7 +9,8 @@ const application = () => {
     })
 
     const listen = (host, port, func) => {
-        server.listen(host, port, func)
+        server.listen(host, port, func);
+        debug('server is now listening');
     }
 
     return {
