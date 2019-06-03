@@ -4,12 +4,14 @@ const serveStatic = require('./middlewares/serve-static');
 const logger = require('./middlewares/logger');
 const errors = require('./middlewares/errors');
 const index = require('./routers/index');
+const login = require('./routers/login');
 
 const app = App();
 
 app.use(logger());
 app.use(serveStatic());
-app.use('/', index());
+app.get('/', index());
+app.post('/login', login());
 app.use(errors.error());
 app.use(errors.error404());
 
