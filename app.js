@@ -5,6 +5,8 @@ const serveStatic = require('./middlewares/serve-static');
 const fs = require('fs');
 const app = App();
 const logger = require('./middlewares/logger');
+const errors = require('./middlewares/errors');
+
 
 const index = (req, res, next) => {
     const publicPath = path.join(__dirname, './public')
@@ -18,21 +20,12 @@ const index = (req, res, next) => {
     })
   };
   
-  const error404 = (req, res, next) => {
-    res.statusCode = 404
-    res.end('Not Found')
-  }
-  
-  const error = (err, req, res, next) => {
-    res.statusCode = 500
-    res.end()
-  }
 
 app.use(logger());
 app.use(serveStatic());
 app.use(index);
-app.use(error404)
-app.use(error)
+app.use(errors.error());
+app.use(errors.error404());
 
 debug('app is initiated');
 module.exports = app;
