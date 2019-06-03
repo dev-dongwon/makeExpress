@@ -26,6 +26,10 @@ const middleware = () => {
         const nextMiddleWare = middlewares[index];
         const next = (err) => runMiddleWare(index+1, err);
 
+        if (nextMiddleWare.path) {
+            const pathMatched = request.url === nextMiddleWare.path;
+            return pathMatched ? nextMiddleWare(request, response, next) : runMiddleWare(index+1);
+        }
         nextMiddleWare(request, response, next);
     }
 
