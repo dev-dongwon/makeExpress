@@ -1,12 +1,12 @@
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
-const debug = require('./utils/debug')('application');
+const debug = require('../utils/debug')('application');
 
 const application = () => {
-    const server = http.createServer((req, res) => {
 
-        const filePath = path.join(__dirname, '/public/index.html');
+    const server = http.createServer((req, res) => {
+        const filePath = path.join(__dirname, '../public/index.html');
         fs.readFile(filePath, (err, data) => {
             if (err) throw err;
 

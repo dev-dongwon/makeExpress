@@ -1,4 +1,4 @@
-const App = require('./application');
+const App = require('./src/application');
 const app = App();
 const debug = require('./utils/debug')('app');
 
