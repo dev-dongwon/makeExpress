@@ -1,12 +1,17 @@
 const http = require('http');
+const path = require('path');
+const fs = require('fs');
 const debug = require('./utils/debug')('application');
 
 const application = () => {
     const server = http.createServer((req, res) => {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/plain');
-        res.end('hello, node!')
-    })
+        const filePath = path.join(__dirname, '/public/index.html');
+        fs.readFile(filePath, (err, data) => {
+            if (err) throw err;
+
+            res.end(data);
+        })
+    });
 
     const listen = (host, port, func) => {
         server.listen(host, port, func);
