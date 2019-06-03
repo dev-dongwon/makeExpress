@@ -4,6 +4,7 @@ const debug = require('./utils/debug')('app');
 const serveStatic = require('./middlewares/serve-static');
 const fs = require('fs');
 const app = App();
+const logger = require('./middlewares/logger');
 
 const index = (req, res, next) => {
     const publicPath = path.join(__dirname, './public')
@@ -27,6 +28,7 @@ const index = (req, res, next) => {
     res.end()
   }
 
+app.use(logger());
 app.use(serveStatic());
 app.use(index);
 app.use(error404)
