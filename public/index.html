@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 
+<!-- 부트스트랩 CDN 적용-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    
+<!--페이지 css-->
 <link rel="stylesheet" href="./css/common.css">
 <link rel="stylesheet" href="./css/login.css">
 
@@ -15,7 +18,9 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-6 col-xs-offset-3" id="login-box">
-          <h1 id="title">WELCOME TO MAFIA</h1>
+        <div>
+            <h1 id="title">WELCOME TO MAFIA</h1>
+        </div>  
         <form action="/users/login" class="form-signin" method="POST">
           <div class="form-label-group">
             <label for="inputEmail">ID</label>
@@ -34,6 +39,7 @@
   </div>
 </body>
 
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 </html>
