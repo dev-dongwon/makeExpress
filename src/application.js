@@ -1,26 +1,22 @@
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
-const serveStatic = require('./serve-static')
+const serveStatic = require('../middlewares/serve-static');
+const Middleware = require('./middleware');
 
 const debug = require('../utils/debug')('application');
 
 const application = () => {
 
-    const server = http.createServer((req, res) => {
-        serveStatic(req, res);
+    const middleware = Middleware();
 
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/html');
-      
-        const filePath = path.join(__dirname, '../public/index.html')
-        fs.readFile(filePath, (err, data) => {
-          if (err) throw err;
-      
-          res.end(data);
-        })
-      
+    const server = http.createServer((req, res) => {
+        middleware.run(req, res);
     });
+
+    const use = (func) => {
+        middleware.add(func);
+    }
 
     const listen = (host, port, func) => {
         server.listen(host, port, func);
@@ -29,7 +25,8 @@ const application = () => {
 
     return {
         server,
-        listen
+        listen,
+        use,
     }
 }
 
