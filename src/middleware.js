@@ -12,13 +12,18 @@ const middleware = () => {
         runMiddleWare(0);
     }
 
-    const runMiddleWare = (index) => {
+    const runMiddleWare = (index, err) => {
         if (index < 0 || middlewares.length < index) {
             return;
         }
 
+        if (err) {
+            const isErrorParam = nextMiddleWare.length === 4;
+            return isErrorParam ? nextMiddleWare(err, request, response, next) : runMiddleWare(index+1, err);
+        }
+
         const nextMiddleWare = middlewares[index];
-        const next = () => runMiddleWare(index+1);
+        const next = (err) => runMiddleWare(index+1, err);
 
         nextMiddleWare(request, response, next);
     }
