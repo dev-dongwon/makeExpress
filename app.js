@@ -5,10 +5,11 @@ const logger = require('./middlewares/logger');
 const errors = require('./middlewares/errors');
 const index = require('./routers/index');
 const login = require('./routers/login');
-
+const bodyParser = require('./middlewares/body-parser');
 const app = App();
 
 app.use(logger());
+app.use(bodyParser());
 app.use(serveStatic());
 app.get('/', index());
 app.post('/login', login());
