@@ -5,6 +5,7 @@ const logger = require('./middlewares/logger');
 const errors = require('./middlewares/errors');
 const index = require('./routers/index');
 const login = require('./routers/login');
+const join = require('./routers/join');
 const bodyParser = require('./middlewares/body-parser');
 const app = App();
 
@@ -12,6 +13,7 @@ app.use(logger());
 app.use(bodyParser());
 app.use(serveStatic());
 app.get('/', index());
+app.get('/join', join());
 app.post('/login', login());
 app.use(errors.error());
 app.use(errors.error404());
